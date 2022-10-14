@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="./js/echarts.js"></script>
+	<style>
+		body{
+			padding: 0;
+			margin: 0;
+			width: 100%;
+			background-image: url("./imgs/dq.jpg");
+			background-position: center -90px;
+		}
+		.header{
+			height: 80px;
+			background-image: url("./imgs/title1.png");
+			background-position: center,0;
+			text-align: center;
+		}
+		.header_title{
+			color: aliceblue;
+			font-size: 40px;
+			line-height: 80px;
+		}
+		.data_main{
+			display: flex;
+			justify-content: space-between;
+		}
+		.data_left{
+			width: 470px;
+			height: 700px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+		.data_left_top{
+			width: 100%;
+			height: 342px;
+			background-image: url(./imgs/left1.png);
+			background-position: center center;
+			background-size: 470px 342px;
+		}
+		.data_left_bottom{
+			width: 100%;
+			height: 342px;
+			background-image: url(./imgs/left1.png);
+			background-position: center center;
+			background-size: 470px 342px;
+		}
+		.data_center{
+			width: 800px;
+			height: 700px;
+			padding: 20px;
+			box-sizing: border-box;
+			border: 1px solid transparent;
+		}
+		.data_center_top{
+			width: 100%;
+			height: 60px;
+			display: flex;
+			justify-content: space-between;
+			color: rgb(215, 214, 213);
+		}
+		.data_center_top_left{
+			width: 350px;
+			padding-left: 60px;
+			background-image: url(./imgs/left.png);
+			background-repeat: no-repeat;
+			background-position: -50px 0;
+		}
+		.data_center_top_right{
+			width: 350px;
+			background-image: url(./imgs/right.png);
+			background-repeat: no-repeat;
+			background-position: 19px 0;
+		}
+		.data_center_center{
+			width: 100%;
+			height: 120px;
+			display: flex;
+			justify-content: space-between;
+			color: rgb(215, 214, 213);
+			text-align: center;
+		}
+		.data_center_center_left{
+			position: relative;
+		}
+		.data_center_center_left span{
+			display: block;
+			width: 48px;
+			height: 48px;
+			position: absolute;
+			left: 100px;
+			top: 50px;
+			background-image: url(./imgs/person.png);
+		}
+		.data_center_center_right{
+			position: relative;
+		}
+		.data_center_center_right span{
+			display: block;
+			width: 56px;
+			height: 45px;
+			position: absolute;
+			left: -50px;
+			top: 50px;
+			background-image: url(./imgs/car.png);
+		}
+		.data_center_bottom{
+			width: 100%;
+			height: 250px;
+			margin-top: 220px;
+			padding: 30px;
+			box-sizing: border-box;
+			display: flex;
+			justify-content: space-between;
+		}
+		.data_center_bottom_left{
+			height: 100%;
+			width: 320px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+		.data_center_bottom_right{
+			height: 100%;
+			width: 320px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+		.data_right{
+			width: 470px;
+			height: 700px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+		.data_right_top{
+			width: 100%;
+			height: 342px;
+			background-image: url(./imgs/left1.png);
+			background-position: center center;
+			background-size: 470px 342px;
+		}
+		.data_right_top_top{
+			width: 100%;
+			height: 30px;
+			font-size: 20px;
+			line-height: 35px;
+			margin-left: 20px;
+			color: rgb(62, 207, 218);
+		}
+		.data_right_top_bottom{
+			width: 100%;
+			height: 310px;
+		}
+		.data_right_bottom{
+			width: 100%;
+			height: 342px;
+			background-image: url(./imgs/left1.png);
+			background-position: center center;
+			background-size: 470px 342px;
+		}
+		.data_right_bottom_top{
+			width: 100%;
+			height: 30px;
+			font-size: 20px;
+			line-height: 35px;
+			margin-left: 20px;
+			color: rgb(62, 207, 218);
+		}
+		.data_right_bottom_bottom{
+			width: 100%;
+			height: 310px;
+		}
+		.bottom{
+			width: 100%;
+			height: 220px;
+			margin-top: 20px;
+			display: flex;
+			justify-content: space-between;
+		}
+		.bottom_left{
+			width: 150px;
+			height: 200px;
+			margin-left: 80px;
+			position: relative;
+		}
+		.bottom_left_item{
+			position: absolute;
+			width: 35px;
+			height: 45px;
+			background-image: url(./imgs/pre.png);
+			right: 50px;
+			top: 50px;
+
+		}
+		.bottom_center{
+			width: 1500px;
+			height: 100%;
+			background-image: url(./imgs/bt.png);
+			background-position: center 109px;
+			background-repeat: no-repeat;
+			display: flex;
+			justify-content: space-between;
+			transition: all 0.1s ease-in;
+		}
+		.bottom_center_item{
+			height: 135px;
+			width: 90px;
+			background-color: #061355;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			border: 1px solid #214ba6;
+			border-radius: 3px;
+		}
+		.bottom_center_item_1{
+			width: 100%;
+			text-align: center;
+			height: 20px;
+			line-height: 20px;
+			color: #23fe37
+		}
+		.bottom_center_item_2{
+			width: 100%;
+			text-align: center;
+			height: 70px;
+			border-radius: 35px;
+			background-image: url(./imgs/hgq.jfif);
+			background-size: 70px 70px;
+			background-position: center center;
+			margin: 0 auto;
+		}
+		.bottom_center_item_3{
+			width: 100%;
+			text-align: center;
+			height: 20px;
+			line-height: 20px;
+			color: #02f8ff;
+		}
+		.bottom_center_item_4{
+			width: 100%;
+			text-align: center;
+			height: 20px;
+			line-height: 20px;
+			color: #d3b191;
+		}
+		.bottom_right{
+			width: 150px;
+			height: 200px;
+			margin-right: 80px;
+			position: relative;
+		}
+		.bottom_right_item{
+			position: absolute;
+			width: 35px;
+			height: 45px;
+			background-image: url(./imgs/next.png);
+			left: 50px;
+			top: 50px;
+
+		}
+	</style>
+</head>
+<body>
+	<div class="header">
+		<!-- <span class="header_title">疫情管控平台</span> -->
+	</div>
+	<div class="data_main">
+		<div class="data_left">
+			<div class="data_left_top" id="data_left_top"></div>
+			<div class="data_left_bottom" id="data_left_bottom"></div>
+		</div>
+		<div class="data_center">
+			<div class="data_center_top">
+				<div class="data_center_top_left"><div class="data_center_top_left_text"><span>平台注册用户数</span> <span style="font-size: 30px; color:rgb(62, 207, 218)">4656</span></div></div>
+				<div class="data_center_top_right"><div class="data_center_top_left_text" style="text-indent: 5em;"><span style="font-size: 30px; color:rgb(62, 207, 218)">118</span> <span>平台注册车辆数</span></div></div>
+			</div>
+			<div class="data_center_center">
+				<div class="data_center_center_left"><p style="font-size: 30px; color:rgb(249, 174, 134)">4656</p> <p>今日进港人数</p><span></span></div>
+				<div class="data_center_center_right"><p style="font-size: 30px; color:rgb(249, 174, 134)">118</p> <p>今日进港车辆</p><span></span></div>
+			</div>
+			<div class="data_center_bottom">
+				<div class="data_center_bottom_left">
+					<p><span style="color: rgb(62, 207, 218);">7日核酸检测人数：</span> <span style="color:rgb(249, 174, 134)">3670</span></p>
+					<p><span style="color: rgb(62, 207, 218);">2日核酸：</span> <span style="color:rgb(249, 174, 134)">1661</span></p>
+					<p><span style="color: rgb(62, 207, 218);">今日核酸：</span> <span style="color:rgb(249, 174, 134)">178</span></p>
+				</div>
+				<div class="data_center_bottom_right">
+					<p><span style="color: rgb(62, 207, 218);">14日健康码 行程码图片更新人数：</span> <span style="color:rgb(249, 174, 134)">0</span></p>
+					<p><span style="color: rgb(62, 207, 218);">14日健康码 行程码图片未更新人数：</span> <span style="color:rgb(249, 174, 134)">4656</span></p>
+					<p><span style="color: rgb(62, 207, 218);">当日访客核酸时间过期人数：</span> <span style="color:rgb(249, 174, 134)">564</span></p>
+				</div>
+			</div>
+		</div>
+		<div class="data_right">
+			<div class="data_right_top">
+				<div class="data_right_top_top">当日访客次数</div>
+				<div class="data_right_top_bottom" id="data_right_top_bottom"></div>
+			</div>
+			<div class="data_right_bottom">
+				<div class="data_right_bottom_top">当日访客异常</div>
+				<div class="data_right_bottom_bottom" id="data_right_bottom_bottom"></div>
+			</div>
+		</div>
+	</div>
+	<div class="bottom">
+		<div class="bottom_left">
+			<div class="bottom_left_item" id="bottom_left_item"></div>
+		</div>
+		<div class="bottom_center" id="bottom_center">
+			<div class="bottom_center_item">
+				<div class="bottom_center_item_1">36.3°C</div>
+				<div class="bottom_center_item_2"></div>
+				<div class="bottom_center_item_3">胡国强</div>
+				<div class="bottom_center_item_4">17:15出</div>
+			</div>
+			<div class="bottom_center_item" style="margin-top: 3px;">
+				<div class="bottom_center_item_1">36.3°C</div>
+				<div class="bottom_center_item_2"></div>
+				<div class="bottom_center_item_3">胡国强</div>
+				<div class="bottom_center_item_4">17:15出</div>
+			</div>
+			<div class="bottom_center_item" style="margin-top: 6px;">
+				<div class="bottom_center_item_1">36.3°C</div>
+				<div class="bottom_center_item_2"></div>
+				<div class="bottom_center_item_3">胡国强</div>
+				<div class="bottom_center_item_4">17:15出</div>
+			</div>
+			<div class="bottom_center_item" style="margin-top: 9px;">
+				<div class="bottom_center_item_1">36.3°C</div>
+				<div class="bottom_center_item_2"></div>
+				<div class="bottom_center_item_3">胡国强</div>
+				<div class="bottom_center_item_4">17:15出</div>
+			</div>
+			<div class="bottom_center_item" style="margin-top: 12px;">
+				<div class="bottom_center_item_1">36.3°C</div>
+				<div class="bottom_center_item_2"></div>
+				<div class="bottom_center_item_3">胡国强</div>
+				<div class="bottom_center_item_4">17:15出</div>
+			</div>
+			<div class="bottom_center_item" style="margin-top: 15px;">
+				<div class="bottom_center_item_1">36.3°C</div>
+				<div class="bottom_center_item_2"></div>
+				<div class="bottom_center_item_3">胡国强</div>
+				<div class="bottom_center_item_4">17:15出</div>
+			</div>
+			<div class="bottom_center_item" style="margin-top: 18px;">
+				<div class="bottom_center_item_1">36.3°C</div>
+				<div class="bottom_center_item_2"></div>
+				<div class="bottom_center_item_3">胡国强</div>
+				<div class="bottom_center_item_4">17:15出</div>
+			</div>
+			<div class="bottom_center_item" style="margin-top: 15px;">
+				<div class="bottom_center_item_1">36.3°C</div>
+				<div class="bottom_center_item_2"></div>
+				<div class="bottom_center_item_3">胡国强</div>
+				<div class="bottom_center_item_4">17:15出</div>
+			</div>
+			<div class="bottom_center_item" style="margin-top: 12px;">
+				<div class="bottom_center_item_1">36.3°C</div>
+				<div class="bottom_center_item_2"></div>
+				<div class="bottom_center_item_3">胡国强</div>
+				<div class="bottom_center_item_4">17:15出</div>
+			</div>
+			<div class="bottom_center_item" style="margin-top: 9px;">
+				<div class="bottom_center_item_1">36.3°C</div>
+				<div class="bottom_center_item_2"></div>
+				<div class="bottom_center_item_3">胡国强</div>
+				<div class="bottom_center_item_4">17:15出</div>
+			</div>
+			<div class="bottom_center_item" style="margin-top: 6px;">
+				<div class="bottom_center_item_1">36.3°C</div>
+				<div class="bottom_center_item_2"></div>
+				<div class="bottom_center_item_3">胡国强</div>
+				<div class="bottom_center_item_4">17:15出</div>
+			</div>
+			<div class="bottom_center_item" style="margin-top: 3px;">
+				<div class="bottom_center_item_1">36.3°C</div>
+				<div class="bottom_center_item_2"></div>
+				<div class="bottom_center_item_3">胡国强</div>
+				<div class="bottom_center_item_4">17:15出</div>
+			</div>
+			<div class="bottom_center_item">
+				<div class="bottom_center_item_1">36.3°C</div>
+				<div class="bottom_center_item_2"></div>
+				<div class="bottom_center_item_3">胡国强</div>
+				<div class="bottom_center_item_4">17:15出</div>
+			</div>
+		</div>
+		<div class="bottom_right">
+			<div class="bottom_right_item" id="bottom_right_item"></div>
+		</div>
+	</div>
+
+<script>
+	var dom_next = document.getElementById("bottom_right_item")
+	var dom_pre = document.getElementById("bottom_left_item")
+	var dom_bottom = document.getElementById("bottom_center")
+
+	let tid = setInterval(()=>{
+		dom_bottom.setAttribute("style","opacity: 0  !important");
+		setTimeout(()=>{
+			dom_bottom.setAttribute("style","opacity: 1 !important");
+		},200)
+	},5000)
+
+	dom_next.addEventListener('click',()=>{
+		dom_bottom.setAttribute("style","opacity: 0  !important");
+		setTimeout(()=>{
+			dom_bottom.setAttribute("style","opacity: 1 !important");
+		},200)
+		clearInterval(tid)
+		tid = setInterval(()=>{
+			dom_bottom.setAttribute("style","opacity: 0  !important");
+			setTimeout(()=>{
+				dom_bottom.setAttribute("style","opacity: 1 !important");
+			},200)
+		},5000)
+	})
+
+	dom_pre.addEventListener('click',()=>{
+		dom_bottom.setAttribute("style","opacity: 0  !important");
+		setTimeout(()=>{
+			dom_bottom.setAttribute("style","opacity: 1 !important");
+		},200)
+		clearInterval(tid)
+		tid = setInterval(()=>{
+			dom_bottom.setAttribute("style","opacity: 0  !important");
+			setTimeout(()=>{
+				dom_bottom.setAttribute("style","opacity: 1 !important");
+			},200)
+		},5000)
+	})
+</script>
+<script src="./js/echarts.js"></script>
+<script src="./js/data_left_top,js"></script>
+<script src="./js/data_left_bottom.js"></script>
+<script src="./js/data_right_top_bottom.js"></script>
+<script src="./js/data_right_bottom_bottom.js"></script>
+</body>
+</html>
